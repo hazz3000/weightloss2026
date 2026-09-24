@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>260 to 220 by Christmas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E8EDEF;--paper:#F8FAFB;--ink:#14222C;--mu:#5A6B77;--line:#CBD5DA;--acc:#0F766E;--run:#1D5FD1;--lift:#14222C;--ride:#0F766E;--easy:#8A9AA5;--amb:#D99A0B;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D161C;--paper:#15212A;--ink:#E4ECF0;--mu:#93A4AF;--line:#2A3944;--acc:#3CC0AE;--run:#6EA0FF;--lift:#E4ECF0;--ride:#3CC0AE;--easy:#6B7C88;--amb:#F0B93A}}
+:root[data-theme="dark"]{--bg:#0D161C;--paper:#15212A;--ink:#E4ECF0;--mu:#93A4AF;--line:#2A3944;--acc:#3CC0AE;--run:#6EA0FF;--lift:#E4ECF0;--ride:#3CC0AE;--easy:#6B7C88;--amb:#F0B93A}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Barlow,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px}
+h1,h2,h3,h4,.dn,.tot dd{font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif}
+.hero{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;border-bottom:3px solid var(--ink);padding-bottom:18px}
+.hero h1{margin:0;font-weight:700;font-size:clamp(64px,13vw,168px);line-height:.82;letter-spacing:-.02em;display:flex;align-items:baseline;gap:.12em;flex-wrap:wrap}
+.hero h1 .to{font-weight:500;font-size:.3em;color:var(--mu);letter-spacing:0}
+.hero h1 .goal{color:var(--acc)}
+.hero .sub{margin:10px 0 0;font-size:18px;color:var(--mu);max-width:60ch}
+.facts{margin:0;display:grid;grid-template-columns:repeat(2,auto);gap:6px 22px;font-size:15px}
+.facts dt{color:var(--mu)}.facts dd{margin:0;font-weight:600;text-align:right}
+.lay{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:28px;margin-top:28px;align-items:start}
+.cal h3{margin:0 0 10px;font-size:22px}
+#grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.gh{font-size:12px;color:var(--mu);text-align:center;padding-bottom:2px}
+.cell{appearance:none;border:0;border-left:4px solid var(--easy);background:var(--paper);color:var(--ink);font:inherit;text-align:left;padding:4px 5px;min-height:46px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;border-radius:2px}
+.cell .dn{font-size:16px;font-weight:600;line-height:1}.cell .tg{font-size:11px;color:var(--mu);line-height:1.1}
+.cell.k-run{border-left-color:var(--run)}.cell.k-lift{border-left-color:var(--lift)}.cell.k-ride{border-left-color:var(--ride)}
+.cell.hol{background:color-mix(in srgb,var(--amb) 18%,var(--paper))}
+.cell.logged .dn::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--acc);margin-left:4px;vertical-align:middle}
+.cell.sel{outline:2px solid var(--ink);outline-offset:1px}
+.cell:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--amb);outline-offset:2px}
+.key{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--mu);margin-top:10px}
+.key span::before{content:"";display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;background:var(--c)}
+.dhead{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.dhead h2{margin:0;font-size:40px;line-height:1}
+.wk{margin:0 0 4px;color:var(--mu);font-size:14px}
+.nav{display:flex;gap:8px}
+button{font:inherit}
+.nav button,.wlog button{background:var(--ink);color:var(--bg);border:0;padding:8px 14px;border-radius:2px;cursor:pointer;font-weight:600}
+.nav button:disabled{opacity:.35;cursor:default}
+.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:22px}
+.col h3{font-size:24px;margin:0 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.tot{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin:0 0 14px;border:1px solid var(--line)}
+.tot div{background:var(--paper);padding:6px 10px}.tot dt{font-size:12px;color:var(--mu)}.tot dd{margin:0;font-size:24px;font-weight:600;line-height:1.1}
+.meal{background:var(--paper);padding:10px 12px;margin-bottom:10px;border-radius:2px}
+.meal header{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.meal h4{margin:0;font-size:19px;font-weight:600}
+.kc{font-weight:600;white-space:nowrap}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+th{font-weight:500;color:var(--mu);text-align:left;font-size:12px;border-bottom:1px solid var(--line);padding:2px 0}
+td{padding:3px 0;border-bottom:1px dotted var(--line)}
+.n{text-align:right;white-space:nowrap;padding-left:10px;font-variant-numeric:tabular-nums}
+.mu{color:var(--mu)}
+.how{font-size:14px;color:var(--mu);margin:6px 0 0}
+.sess{background:var(--paper);padding:10px 12px;margin-bottom:10px;border-left:4px solid var(--easy);border-radius:2px}
+.sess.k-run{border-left-color:var(--run)}.sess.k-lift{border-left-color:var(--lift)}.sess.k-ride{border-left-color:var(--ride)}
+.sess h4{margin:0 0 4px;font-size:20px;font-weight:600}.sess .when{color:var(--mu);font-weight:500}
+.sess p{margin:0;font-size:15px}
+.ex{margin:8px 0 0;padding-left:20px;font-size:15px}.ex li{margin:2px 0}
+.steps{font-size:15px;margin:4px 0 16px}
+.wlog{background:var(--paper);padding:10px 12px;border-radius:2px}.wlog h4{margin:0;font-size:20px}.wlog p{font-size:14px;margin:4px 0 8px}
+.wlog form{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.wlog label{font-size:14px}
+.wlog input{font:inherit;width:100px;padding:6px 8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:2px}
+.below{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px;border-top:3px solid var(--ink);padding-top:20px}
+.below h3{font-size:26px;margin:0 0 8px}
+.below p,.below li{max-width:70ch}
+#chart svg{width:100%;height:auto;display:block;background:var(--paper)}
+.gl{stroke:var(--line);stroke-width:1}.ax{fill:var(--mu);font:12px Barlow,Arial,sans-serif}
+.tl{stroke:var(--amb);stroke-width:2;stroke-dasharray:6 5}.pt{fill:var(--mu)}.av{fill:none;stroke:var(--acc);stroke-width:3}
+#shop{list-style:none;margin:0;padding:0;columns:2;column-gap:24px;font-size:14px}
+#shop li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted var(--line);padding:3px 0;break-inside:avoid}
+.rules{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.rules h4{font-size:20px;margin:0 0 4px}.rules p{margin:0 0 8px;font-size:15px}
+.legend{font-size:13px;color:var(--mu);margin-top:6px}
+@media (max-width:900px){.lay,.cols,.below,.rules{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.facts dd{text-align:left}#shop{columns:1}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.prog{margin-top:28px}.prog h3{font-size:26px;margin:0 0 10px}
+.big{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:0 0 8px}
+.big div{background:var(--paper);padding:10px 12px}.big dt{font-size:13px;color:var(--mu)}
+.big dd{margin:0;font:600 38px/1.05 "Barlow Condensed","Arial Narrow",Arial,sans-serif}.big dd small{font-size:16px;font-weight:500;color:var(--mu)}
+.big p{margin:2px 0 0;font-size:12px;color:var(--mu)}
+.empty{background:var(--paper);padding:14px;margin:0}
+.pgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;margin-top:12px;align-items:start}
+.wt{background:var(--paper)}.wt td,.wt th{padding:4px 8px}.wt tr.cur td{font-weight:600;background:color-mix(in srgb,var(--acc) 12%,var(--paper))}
+.cell{position:relative}.cell.today .dn{text-decoration:underline;text-underline-offset:3px}
+.mk{position:absolute;top:4px;right:4px;display:flex;gap:2px}
+.mk i,.legend i{display:inline-block;width:6px;height:6px;border-radius:50%}
+.legend i{vertical-align:middle;margin:0 2px 0 6px}
+.m-w{background:var(--amb)}.m-f{background:var(--acc)}.m-t{background:var(--run)}
+.wlog{margin-bottom:14px}.wlog h4{margin:0 0 6px}
+.wlog textarea{width:100%;font:inherit;font-size:15px;padding:6px 8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:2px;resize:vertical}
+.eaten{margin:0 0 10px;font-size:15px}
+.log{border:0;border-top:1px solid var(--line);margin:8px 0 0;padding:8px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.log legend{font-size:13px;color:var(--mu);padding:0;float:left;width:100%;margin-bottom:4px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:inline-block;padding:4px 10px;border:1px solid var(--line);border-radius:2px;font-size:14px;cursor:pointer;background:var(--bg)}
+.seg input:checked+span{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg input:focus-visible+span{outline:3px solid var(--amb);outline-offset:2px}
+.swap{display:flex;gap:8px;flex-wrap:wrap;width:100%;margin-top:4px}
+.swap label,#xf label{display:flex;flex-direction:column;font-size:12px;color:var(--mu)}
+.swap input,#xf input{font:inherit;font-size:15px;padding:5px 8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:2px}
+.sw-kcal,#xk{width:90px}
+.meal.st-ate{box-shadow:inset 4px 0 0 var(--acc)}.meal.st-skip{opacity:.6}.meal.st-swap{box-shadow:inset 4px 0 0 var(--amb)}
+#xlist{list-style:none;margin:6px 0;padding:0;font-size:14px}#xlist li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted var(--line);padding:3px 0}
+#xf{display:flex;gap:8px;align-items:end;flex-wrap:wrap}
+#xf button,.bk button,.file{background:var(--ink);color:var(--bg);border:0;padding:7px 14px;border-radius:2px;cursor:pointer;font-weight:600;font-size:15px}
+.lnk{background:none;border:0;color:var(--run);cursor:pointer;padding:0 0 0 8px;font-size:13px;text-decoration:underline}
+.chk{display:inline-flex;gap:6px;align-items:center;margin-top:8px;font-weight:600;cursor:pointer}.chk input{width:18px;height:18px;accent-color:var(--acc)}
+.sess.done{background:color-mix(in srgb,var(--acc) 10%,var(--paper))}
+.bk{display:flex;gap:10px;flex-wrap:wrap}.file{display:inline-block}.file input{position:absolute;opacity:0;width:1px;height:1px}
+.file:focus-within{outline:3px solid var(--amb);outline-offset:2px}
+@media (max-width:900px){.big{grid-template-columns:repeat(2,1fr)}.pgrid{grid-template-columns:1fr}}
+@media print{.log,#xf,.nav,.bk,.chk{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div>
+    <h1><span>260</span><span class="to">lb, down to</span><span class="goal">220</span></h1>
+    <p class="sub">September 25 to Christmas Day. About 2,050 kcal a day, lean protein and soluble fiber for cholesterol, three lifts, three run/walks and daily riding every week.</p>
+  </div>
+  <dl class="facts">
+    <dt>Calories</dt><dd>2,014–2,126 / day</dd>
+    <dt>Protein</dt><dd>170 g or more</dd>
+    <dt>Saturated fat</dt><dd>10 g or less</dd>
+    <dt>Fiber</dt><dd>36 g or more</dd>
+    <dt>Needed pace</dt><dd>≈3 lb / week</dd>
+  </dl>
+</header>
+
+<section class="prog" aria-labelledby="ph">
+  <h3 id="ph">Progress</h3>
+  <div id="stats"></div>
+  <div class="pgrid">
+    <div><div id="chart"></div><p class="legend">Dashed line: straight-line pace to 220. Solid line: your 7-day average. Dots: single weigh-ins.</p></div>
+    <div class="tw"><table class="wt"><thead><tr><th>Week</th><th>Dates</th><th class="n">Avg lb</th><th class="n">Change</th><th class="n">Avg kcal</th><th class="n">Sessions</th></tr></thead><tbody id="weeks"></tbody></table>
+    <p class="legend">Avg kcal counts only days where every meal is marked.</p></div>
+  </div>
+</section>
+
+<div class="lay">
+  <aside class="cal">
+    <h3>Pick a day</h3>
+    <div id="grid"></div>
+    <div class="key"><span style="--c:var(--lift)">Lift + ride</span><span style="--c:var(--run)">Run + walk</span><span style="--c:var(--ride)">Long easy ride</span><span style="--c:var(--amb)">Holiday</span></div>
+    <p class="legend">Marks on a day: <i class="m-w"></i> weight, <i class="m-f"></i> all meals logged, <i class="m-t"></i> training done.</p>
+  </aside>
+  <main id="day"></main>
+</div>
+
+<div class="below">
+  <section>
+    <h3>Your data</h3>
+    <p>Everything you log is saved in this browser on this device only. Nothing is sent anywhere, and it won't appear on your phone if you log on your laptop.</p>
+    <p>Download a backup every week or so. To move to another device, download here and restore there. Clearing browser data erases your log, so keep the latest backup.</p>
+    <div class="bk"><button id="exp" type="button">Download backup</button><label class="file">Restore from backup<input id="imp" type="file" accept="application/json,.json"></label></div>
+    <p id="bmsg" class="mu" aria-live="polite"></p>
+  </section>
+  <section>
+    <h3 id="shopt">Shopping</h3>
+    <ul id="shop"></ul>
+    <p class="legend">Raw weights unless the food says cooked. Updates to whichever week you have selected.</p>
+  </section>
+  <div class="rules">
+    <section>
+      <h4>How to weigh food and yourself</h4>
+      <p>Use a digital kitchen scale in grams. Meat, fish and vegetables are raw weights; rice, quinoa, barley, pasta, lentils and beans are cooked weights.</p>
+      <p>Weigh yourself every morning after the bathroom, before eating. The first week usually drops 4–8 lb, mostly water. After that, 2–3 lb a week is the realistic range.</p>
+      <p>Free: water, black coffee, tea, sparkling water, herbs, spices, garlic, lemon, vinegar, mustard, hot sauce. Alcohol isn't in the plan.</p>
+    </section>
+    <section>
+      <h4>When to adjust</h4>
+      <p>If your 7-day average drops less than 1.5 lb a week for two weeks in a row (after week 2), drop the afternoon snack. Don't go below about 1,850 kcal without your doctor.</p>
+      <p>If you're losing more than 4 lb a week after week 2, feel dizzy, or workouts are falling apart, add the snack back.</p>
+      <p>Sleep under 6 hours or heavy legs: skip the evening session, not the morning one.</p>
+    </section>
+    <section>
+      <h4>Cholesterol and safety</h4>
+      <p>Oats, barley, beans and lentils supply soluble fiber; salmon twice a week; nuts, seeds and olive oil replace butter, cheese and red or processed meat. One whole egg twice a week.</p>
+      <p>Get a quick check-up before starting, and a repeat lipid panel near the end. If you take a statin, ask about grapefruit (none is in this plan).</p>
+      <p>Running: any sharp or worsening pain in shins, knees, feet or Achilles means repeat the previous week. Get fitted for running shoes first.</p>
+    </section>
+  </div>
+</div>
+</div>
+<script>
+// per 100 g: kcal, protein, fat, sat fat, carbs, fiber
+const FOODS = {
+  oats:["Rolled oats (dry)",379,13.2,6.5,1.1,67.7,10.1],
+  skim:["Skim milk",34,3.4,0.1,0.1,5,0],
+  whey:["Whey protein isolate",367,83,1.5,0.5,5,0],
+  blueb:["Blueberries",57,0.7,0.3,0,14.5,2.4],
+  flax:["Ground flaxseed",534,18.3,42,3.7,28.9,27.3],
+  ewhite:["Liquid egg whites",52,10.9,0.2,0,0.7,0],
+  egg:["Whole egg (1 large)",143,12.6,9.5,3.1,0.7,0],
+  spinach:["Spinach",23,2.9,0.4,0.1,3.6,2.2],
+  mush:["Mushrooms",22,3.1,0.3,0,3.3,1],
+  bread:["Whole-grain bread",250,12,3.5,0.7,43,7],
+  oil:["Olive oil",884,0,100,13.8,0,0],
+  straw:["Strawberries",32,0.7,0.3,0,7.7,2],
+  gyog:["0% Greek yogurt",59,10.3,0.4,0.1,3.6,0],
+  rasp:["Raspberries",52,1.2,0.7,0,11.9,6.5],
+  walnut:["Walnuts",654,15.2,65,6.1,13.7,6.7],
+  chia:["Chia seeds",486,16.5,30.7,3.3,42,34.4],
+  cottage:["1% cottage cheese",72,12.4,1,0.6,2.7,0],
+  tomato:["Tomato",18,0.9,0.2,0,3.9,1.2],
+  pear:["Pear",57,0.4,0.1,0,15.2,3.1],
+  tortilla:["Whole-wheat tortilla",290,8,7,1.5,48,6],
+  bbeans:["Black beans (cooked/drained)",132,8.9,0.5,0.1,23.7,8.7],
+  salsa:["Salsa",30,1.5,0.2,0,6.5,1.5],
+  pepper:["Bell pepper",31,1,0.3,0,6,2.1],
+  avo:["Avocado",160,2,14.7,2.1,8.5,6.7],
+  chicken:["Chicken breast (raw, skinless)",120,22.5,2.6,0.6,0,0],
+  brice:["Brown rice (cooked)",123,2.7,1,0.2,25.6,1.6],
+  broc:["Broccoli",34,2.8,0.4,0.1,6.6,2.6],
+  tuna:["Tuna in water (drained)",116,25.5,0.8,0.2,0,0],
+  chickpea:["Chickpeas (cooked/drained)",164,8.9,2.6,0.3,27.4,7.6],
+  greens:["Mixed salad greens",20,1.5,0.2,0,3.5,2],
+  cuke:["Cucumber",15,0.7,0.1,0,3.6,0.5],
+  onion:["Onion",40,1.1,0.1,0,9.3,1.7],
+  turkey:["99% lean ground turkey (raw)",107,24,1,0.3,0,0],
+  crushtom:["Crushed tomatoes / marinara (no sugar added)",50,1.5,1.5,0.2,8,2],
+  lentil:["Lentils (cooked)",116,9,0.4,0.1,20,7.9],
+  barley:["Pearl barley (cooked)",123,2.3,0.4,0.1,28.2,3.8],
+  carrot:["Carrot",41,0.9,0.2,0,9.6,2.8],
+  shrimp:["Shrimp (raw, peeled)",85,20.1,0.5,0.1,0,0],
+  stirveg:["Frozen stir-fry vegetables",35,2,0.3,0,6.5,2.5],
+  soy:["Low-sodium soy sauce",60,8,0.1,0,5.6,0.8],
+  hummus:["Hummus",166,7.9,9.6,1.4,14.3,6],
+  apple:["Apple",52,0.3,0.2,0,13.8,2.4],
+  tofu:["Extra-firm tofu",144,17.3,8.7,1.3,2.8,2.3],
+  quinoa:["Quinoa (cooked)",120,4.4,1.9,0.2,21.3,2.8],
+  edamame:["Edamame, shelled (cooked)",121,11.9,5.2,0.6,8.9,5.2],
+  salmon:["Wild salmon fillet (raw)",142,19.8,6.3,1,0,0],
+  swpot:["Sweet potato (raw weight)",86,1.6,0.1,0,20.1,3],
+  gbeans:["Green beans",31,1.8,0.2,0,7,2.7],
+  pasta:["Whole-wheat pasta (cooked)",149,6,1.7,0.3,30,3.9],
+  zucc:["Zucchini",17,1.2,0.3,0.1,3.1,1],
+  cod:["Cod fillet (raw)",82,17.8,0.7,0.1,0,0],
+  potato:["Potato (raw weight)",77,2,0.1,0,17.5,2.2],
+  pork:["Pork tenderloin (raw, trimmed)",120,21,3.5,1.2,0,0],
+  brus:["Brussels sprouts",43,3.4,0.3,0.1,9,3.8],
+  bun:["Whole-grain bun",250,12,3.5,0.7,43,7],
+  banana:["Banana",89,1.1,0.3,0.1,22.8,2.6],
+  almond:["Almonds",579,21,50,3.8,21.6,12.5],
+  abutter:["Almond butter",614,21,56,4.2,19,10],
+  ricecake:["Plain rice cakes",387,8,2.8,0.6,81,4.2],
+  orange:["Orange",47,0.9,0.1,0,11.8,2.4],
+};
+const MEALS = {
+ B:[
+  {name:"Blueberry protein oats",items:[["oats",60],["skim",200],["whey",30],["blueb",100],["flax",10]],how:"Microwave oats and milk 2–3 min, stir in whey once slightly cooled, top with berries and flax."},
+  {name:"Egg-white scramble on toast",items:[["ewhite",250],["egg",50],["spinach",60],["mush",80],["bread",80],["oil",5],["straw",100]],how:"Sauté mushrooms and spinach in the oil, add whites and the one whole egg, scramble. Two slices toast."},
+  {name:"Greek yogurt bowl",items:[["gyog",350],["rasp",125],["oats",30],["walnut",12],["chia",10]],how:"Stir chia into yogurt, top with raw oats, berries and chopped walnuts. Can be made the night before."},
+  {name:"Cottage cheese & tomato toast",items:[["cottage",250],["bread",80],["tomato",100],["pear",170]],how:"Toast, spread cottage cheese, sliced tomato, black pepper. Pear on the side."},
+  {name:"Breakfast burrito",items:[["ewhite",250],["tortilla",60],["bbeans",80],["pepper",60],["salsa",60],["avo",30]],how:"Scramble whites with diced pepper, warm the beans, wrap with salsa and avocado."},
+ ],
+ L:[
+  {name:"Chicken, rice & broccoli bowl",items:[["chicken",180],["brice",150],["broc",150],["tomato",100],["oil",7]],how:"Batch-cook: bake chicken at 220°C/425°F ~20 min. Drizzle the oil on the finished bowl with lemon."},
+  {name:"Tuna & chickpea salad",items:[["tuna",160],["chickpea",120],["greens",100],["cuke",100],["tomato",100],["onion",30],["oil",10]],how:"Toss everything; dress with the oil plus lemon juice or vinegar and mustard."},
+  {name:"Turkey & black bean chili",items:[["turkey",180],["bbeans",120],["crushtom",150],["onion",60],["pepper",80],["oil",5],["gyog",50]],how:"Batch-cook a big pot with chili powder, cumin, garlic. Greek yogurt replaces sour cream."},
+  {name:"Lentil & barley soup with chicken",items:[["lentil",200],["barley",80],["carrot",80],["onion",50],["spinach",50],["chicken",100],["oil",7]],how:"Batch soup; shred in cooked chicken. Freezes well."},
+  {name:"Shrimp stir-fry",items:[["shrimp",220],["stirveg",250],["brice",150],["soy",15],["oil",7]],how:"Stir-fry veg in the oil, add shrimp for 3 min, finish with soy, garlic, ginger, chili."},
+  {name:"Chicken hummus wrap + apple",items:[["chicken",150],["tortilla",60],["hummus",40],["greens",40],["cuke",80],["tomato",80],["apple",180]],how:"Use leftover batch chicken. Hummus is the only spread."},
+  {name:"Tofu, quinoa & edamame bowl",items:[["tofu",200],["quinoa",120],["edamame",60],["broc",100],["soy",10]],how:"Press and cube tofu, bake at 220°C/425°F ~25 min until crisp (no oil needed on parchment)."},
+ ],
+ D:[
+  {name:"Salmon, sweet potato & green beans",items:[["salmon",200],["swpot",250],["gbeans",200],["oil",7]],how:"Roast sweet potato 35 min; salmon 12–14 min at 200°C/400°F. Oil goes on the vegetables."},
+  {name:"Chicken & vegetable whole-wheat pasta",items:[["chicken",180],["pasta",180],["crushtom",150],["zucc",150],["oil",5]],how:"Cooked-pasta weight. Weigh after draining."},
+  {name:"Lemon cod, potatoes & broccoli",items:[["cod",250],["potato",300],["broc",200],["greens",80],["oil",10]],how:"Roast potatoes 35 min, add cod for the last 12 min with lemon and herbs."},
+  {name:"Pork tenderloin, barley & Brussels sprouts",items:[["pork",200],["barley",180],["brus",200],["oil",8]],how:"Sear then roast pork to 63°C/145°F, rest 5 min. Roast halved sprouts in the oil."},
+  {name:"Chicken fajita bowl",items:[["chicken",200],["bbeans",100],["brice",100],["pepper",150],["onion",80],["salsa",60],["avo",40]],how:"Dry-pan or grill the chicken, peppers and onions with fajita spice."},
+  {name:"Salmon, quinoa & spinach",items:[["salmon",180],["quinoa",180],["spinach",150],["tomato",100],["oil",10]],how:"Wilt spinach and tomatoes in the oil with garlic; serve under the salmon."},
+  {name:"Turkey burger & sweet potato wedges",items:[["turkey",200],["bun",70],["swpot",200],["greens",80],["tomato",80],["oil",5]],how:"Season turkey well (it's lean). Oil the wedges and bake 30 min."},
+ ],
+ S1:[{name:"Post-workout shake",items:[["whey",30],["banana",120]],how:"Blend with water and ice, within an hour of the AM session."}],
+ S2:[
+  {name:"Greek yogurt & almonds",items:[["gyog",170],["almond",15]]},
+  {name:"Cottage cheese & strawberries",items:[["cottage",150],["straw",150]]},
+  {name:"Edamame",items:[["edamame",150]]},
+  {name:"Hummus & raw vegetables",items:[["hummus",50],["carrot",150],["cuke",100]]},
+  {name:"Rice cakes & cottage cheese",items:[["ricecake",18],["cottage",100],["tomato",60]]},
+  {name:"Apple & almond butter",items:[["apple",180],["abutter",12]]},
+ ]
+};
+function mealTotals(m){const t=[0,0,0,0,0,0];for(const [k,g] of m.items){const f=FOODS[k];if(!f)throw k;for(let i=0;i<6;i++)t[i]+=f[i+1]*g/100;}return t;}
+
+const START = new Date(2026, 8, 25);
+const NDAYS = 92;
+const DAYMS = 864e5;
+const dateOf = i => new Date(START.getTime() + i * DAYMS + 3600e3 * 2);
+const key = d => d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const WD = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const fmt = d => WD[d.getDay()] + ", " + MON[d.getMonth()] + " " + d.getDate();
+const short = d => MON[d.getMonth()] + " " + d.getDate();
+const THANKS = "2026-11-26", XMAS = "2026-12-25";
+const DELOAD = w => w === 4 || w === 9;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+const RUNS = [
+ "Walk 5 min, then 8 × (jog 1:00 / walk 2:00), walk 5 min to cool down.",
+ "Walk 5 min, then 8 × (jog 1:30 / walk 2:00), walk 5 min.",
+ "Walk 5 min, then 6 × (jog 2:00 / walk 1:30), walk 5 min.",
+ "Walk 5 min, then 5 × (jog 3:00 / walk 1:30), walk 5 min.",
+ "Easier week. Walk 5 min, then 5 × (jog 2:00 / walk 2:00), walk 5 min.",
+ "Walk 5 min, then 4 × (jog 4:00 / walk 1:30), walk 5 min.",
+ "Walk 5 min, then 3 × (jog 6:00 / walk 2:00), walk 5 min.",
+ "Walk 5 min, then 3 × (jog 8:00 / walk 2:00), walk 5 min.",
+ "Walk 5 min, then 2 × (jog 10:00 / walk 2:00), walk 5 min.",
+ "Easier week. Walk 5 min, then 3 × (jog 5:00 / walk 2:00), walk 5 min.",
+ "Walk 5 min, then 2 × (jog 12:00 / walk 1:30), walk 5 min.",
+ "Walk 5 min, then jog 20:00 without stopping, walk 5 min.",
+ "Walk 5 min, then jog 25:00 without stopping, walk 5 min.",
+];
+const BIKE = [30,30,40,40,30,45,45,45,45,35,50,50,50,50];
+const LONG = [45,50,60,60,45,70,75,80,90,60,90,90,90,90];
+const LIFT_A = [["Leg press (or goblet squat)","main"],["Dumbbell bench press","main"],["Seated cable row","main"],["Dumbbell Romanian deadlift","main"],["Plank","3 × 30–45 s"],["Farmer carry","3 × 30 m"]];
+const LIFT_B = [["Trap-bar deadlift (leg press if your back isn't ready)","main"],["Lat pulldown","main"],["Incline dumbbell press","main"],["Dumbbell split squat","main"],["Cable face pull","3 × 15"],["Dead bug","3 × 8 each side"]];
+function liftDose(w){
+  if (DELOAD(w)) return "2 × 10 at about 80% of last week's weights";
+  if (w < 2) return "3 × 10, stop each set with 3 reps left in the tank";
+  if (w < 4) return "3 × 10, 2 reps in reserve; add weight once every set feels easy";
+  if (w < 9) return "4 × 8, 2 reps in reserve";
+  return "4 × 6–8, 1–2 reps in reserve";
+}
+const THANKS_DINNER = {name:"Thanksgiving dinner: one plate", fixed:[1300,70,55,15,120,10],
+  how:"One plate, no seconds: about 200 g (7 oz) skinless turkey breast, half the plate vegetables, one scoop of either stuffing or potatoes, one small slice of pie. Go easy on gravy and anything buttery. Calories here are an estimate."};
+const mt = m => m.fixed ? m.fixed.slice() : mealTotals(m);
+
+const DAYS = [];
+let liftCount = 0;
+for (let i = 0; i < NDAYS; i++){
+  const d = dateOf(i), w = Math.min(Math.floor(i/7), 13), dow = d.getDay(), k = key(d);
+  const steps = w < 2 ? "8,000" : "10,000";
+  let am, pm;
+  const bike = m => ({kind:"Ride", title:`Zone 2 bike, ${m} min`, detail:"Steady, conversational pace: you can speak in full sentences. Indoor or outdoor."});
+  if (dow === 1 || dow === 3 || dow === 5){
+    const A = liftCount % 2 === 0; liftCount++;
+    am = {kind:"Lift", title:`Strength ${A ? "A" : "B"}${DELOAD(w) ? " (lighter week)" : ""}`, detail:"Warm up 5 min on the bike plus one light set per exercise. Main lifts: " + liftDose(w) + ". Rest 90 s between sets. ~50 min.", list:(A?LIFT_A:LIFT_B)};
+    pm = bike(BIKE[w]);
+  } else if (dow === 2 || dow === 4 || dow === 6){
+    am = {kind:"Run", title:`Run/walk${DELOAD(w) ? " (lighter week)" : ""}`, detail: RUNS[Math.min(w,12)] + " Jog slowly enough to talk. Treadmill or flat path."};
+    pm = dow === 4 ? {kind:"Easy", title:"Mobility 15 min + walk 30 min", detail:"Hips, calves, hamstrings, thoracic spine. Then an easy walk."}
+                   : {kind:"Easy", title:"Easy walk, 30 min", detail:"Recovery pace. Skip it if legs feel heavy or sleep was short."};
+  } else {
+    am = {kind:"Ride", title:`Long easy ride, ${LONG[w]} min`, detail:"Recovery pace only. Outdoor if the weather allows. This is not a hard day."};
+    pm = {kind:"Easy", title:"Mobility, 15 min", detail:"Same routine as Thursday."};
+  }
+  if (k === XMAS){ am = {kind:"Easy", title:"Weigh-in, then a relaxed walk", detail:"Finish line. Weigh in the usual way before eating."}; pm = null; }
+  let menu = [["Breakfast", MEALS.B[i%5]],["Post-workout", MEALS.S1[0]],["Lunch", MEALS.L[i%7]],["Afternoon snack", MEALS.S2[i%6]],["Dinner", MEALS.D[(i+3)%7]]];
+  if (k === THANKS) menu = [["Breakfast", MEALS.B[0]],["Afternoon snack", MEALS.S2[0]],["Dinner", THANKS_DINNER]];
+  DAYS.push({i, d, k, w, am, pm, steps, menu, thanks: k === THANKS, xmas: k === XMAS});
+}
+const BYKEY = Object.fromEntries(DAYS.map(d => [d.k, d]));
+const r0 = x => Math.round(x);
+const oz = g => (g/28.35).toFixed(1);
+function planTotals(day){ const t=[0,0,0,0,0,0]; day.menu.forEach(([,m])=>mt(m).forEach((v,j)=>t[j]+=v)); return t; }
+
+/* ---------- storage: everything lives in this browser ---------- */
+const SKEY = "plan260-v1";
+let DB = load();
+function load(){
+  try { const o = JSON.parse(localStorage.getItem(SKEY) || "null"); if (o && o.weights) return o; } catch(e){}
+  return {weights:{}, food:{}, training:{}, notes:{}};
+}
+function save(){ try { localStorage.setItem(SKEY, JSON.stringify(DB)); return true; } catch(e){ return false; } }
+function foodDay(k){ return DB.food[k] || (DB.food[k] = {meals:{}, extras:[]}); }
+
+/* Eaten calories: planned meals marked "ate", swaps at entered kcal, extras. */
+function eaten(day){
+  const f = DB.food[day.k]; if (!f) return null;
+  let kcal = 0, marked = 0;
+  day.menu.forEach(([,m], idx) => {
+    const s = f.meals[idx]; if (!s) return; marked++;
+    if (s.st === "ate") kcal += mt(m)[0];
+    else if (s.st === "swap") kcal += (+s.kcal || 0);
+  });
+  const extra = (f.extras||[]).reduce((a,e)=>a+(+e.kcal||0),0);
+  kcal += extra;
+  if (!marked && !extra) return null;
+  return {kcal, marked, total: day.menu.length, extra, complete: marked === day.menu.length};
+}
+
+/* ---------- calendar ---------- */
+const TODAYK = key(new Date());
+let sel = BYKEY[TODAYK] ? BYKEY[TODAYK].i : 0;
+
+function renderGrid(){
+  const g = document.getElementById("grid"); g.innerHTML = "";
+  ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach(h=>{const e=document.createElement("div");e.className="gh";e.textContent=h;g.appendChild(e);});
+  const lead = (DAYS[0].d.getDay()+6)%7;
+  for (let j=0;j<lead;j++){ const e=document.createElement("div"); e.className="gx"; g.appendChild(e); }
+  DAYS.forEach(day=>{
+    const b = document.createElement("button");
+    const e = eaten(day), tr = DB.training[day.k] || {};
+    const done = (tr.am ? 1 : 0) + (tr.pm ? 1 : 0), need = day.pm ? 2 : 1;
+    b.className = "cell k-" + day.am.kind.toLowerCase() + (day.i===sel?" sel":"") + (day.thanks||day.xmas?" hol":"") + (day.k===TODAYK?" today":"");
+    const marks = `<span class="mk">${DB.weights[day.k]!=null?'<i class="m-w" title="Weight logged"></i>':""}${e&&e.complete?'<i class="m-f" title="Food logged"></i>':""}${done>=need?'<i class="m-t" title="Training done"></i>':""}</span>`;
+    b.setAttribute("aria-label", fmt(day.d) + ": " + day.am.title);
+    const m = day.d.getDate()===1 || day.i===0 ? MON[day.d.getMonth()] + " " : "";
+    b.innerHTML = `<span class="dn">${m}${day.d.getDate()}</span><span class="tg">${day.xmas?"Finish":day.thanks?"Thanksgiving":day.am.kind}</span>${marks}`;
+    b.onclick = ()=>{ sel = day.i; renderAll(); document.getElementById("day").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth", block:"start"}); };
+    g.appendChild(b);
+  });
+}
+
+/* ---------- day view ---------- */
+function mealHTML(label, m, idx, day){
+  const t = mt(m), f = DB.food[day.k], s = f && f.meals[idx] || {};
+  const rows = m.items ? m.items.map(([k,g])=>{const fd=FOODS[k];return `<tr><td>${fd[0]}</td><td class="n">${g} g <span class="mu">(${oz(g)} oz)</span></td><td class="n">${r0(fd[1]*g/100)}</td></tr>`}).join("") : "";
+  const opt = (v, lab) => `<label class="seg"><input type="radio" name="m${idx}" value="${v}" ${s.st===v?"checked":""}><span>${lab}</span></label>`;
+  return `<section class="meal st-${s.st||"none"}" data-idx="${idx}"><header><h4>${label}: ${m.name}</h4><span class="kc">${m.fixed?"about ":""}${r0(t[0])} kcal</span></header>
+  ${rows?`<div class="tw"><table><thead><tr><th>Food</th><th class="n">Weight</th><th class="n">kcal</th></tr></thead><tbody>${rows}</tbody></table></div>`:""}
+  ${m.how?`<p class="how">${m.how}</p>`:""}
+  <fieldset class="log"><legend>What did you eat?</legend>${opt("ate","Ate as planned")}${opt("swap","Ate something else")}${opt("skip","Skipped")}
+   <div class="swap" ${s.st==="swap"?"":"hidden"}><label>What<input type="text" class="sw-note" value="${esc(s.note||"")}" placeholder="e.g. turkey sandwich"></label><label>kcal<input type="number" class="sw-kcal" inputmode="numeric" min="0" max="5000" value="${s.kcal||""}"></label></div>
+  </fieldset></section>`;
+}
+function sessHTML(when, s, slot, day){
+  if (!s) return "";
+  const done = (DB.training[day.k]||{})[slot];
+  const list = s.list ? `<ol class="ex">${s.list.map(([n,dz])=>`<li>${n}<span class="mu">${dz==="main"?"":", "+dz}</span></li>`).join("")}</ol>` : "";
+  return `<section class="sess k-${s.kind.toLowerCase()}${done?" done":""}"><h4><span class="when">${when}</span> ${s.title}</h4><p>${s.detail}</p>${list}
+  <label class="chk"><input type="checkbox" data-slot="${slot}" ${done?"checked":""}> Done</label></section>`;
+}
+function renderDay(){
+  const day = DAYS[sel], t = planTotals(day), e = eaten(day), f = DB.food[day.k] || {extras:[]};
+  const tgt = (260 - 40 * day.i / (NDAYS-1)).toFixed(1);
+  const w = DB.weights[day.k];
+  const eatenLine = e ? `Logged so far: <strong>${r0(e.kcal).toLocaleString()} kcal</strong> (${e.marked} of ${e.total} meals marked${e.extra?`, ${r0(e.extra)} kcal extras`:""}). Plan: ${r0(t[0]).toLocaleString()}.` : `Nothing logged yet. Plan: ${r0(t[0]).toLocaleString()} kcal.`;
+  document.getElementById("day").innerHTML = `
+   <div class="dhead">
+     <div><p class="wk">Week ${Math.min(day.w+1,13)} of 13, day ${day.i+1} of ${NDAYS}${DELOAD(day.w)?" (lighter training week)":""}${day.k===TODAYK?", today":""}</p><h2>${fmt(day.d)}</h2></div>
+     <div class="nav"><button id="prev" ${sel===0?"disabled":""}>Previous day</button><button id="next" ${sel===NDAYS-1?"disabled":""}>Next day</button></div>
+   </div>
+   <section class="wlog">
+     <form id="wf"><label for="wi">Morning weight (lb)</label><input id="wi" type="number" inputmode="decimal" step="0.1" min="150" max="320" value="${w!=null?w:""}"><button type="submit">Save weight</button><span id="saved" class="mu" aria-live="polite"></span></form>
+     <p class="mu">Straight-line pace for this date: ${tgt} lb.</p>
+   </section>
+   <div class="cols">
+     <div class="col">
+       <h3>Food</h3>
+       <dl class="tot"><div><dt>Plan kcal</dt><dd>${r0(t[0]).toLocaleString()}</dd></div><div><dt>Protein</dt><dd>${r0(t[1])} g</dd></div><div><dt>Sat. fat</dt><dd>${r0(t[3])} g</dd></div><div><dt>Fiber</dt><dd>${r0(t[5])} g</dd></div><div><dt>Carbs</dt><dd>${r0(t[4])} g</dd></div><div><dt>Fat</dt><dd>${r0(t[2])} g</dd></div></dl>
+       <p class="eaten" id="eatenline">${eatenLine}</p>
+       ${day.menu.map(([l,m],idx)=>mealHTML(l,m,idx,day)).join("")}
+       <section class="meal extras"><header><h4>Anything extra</h4></header>
+         <ul id="xlist">${(f.extras||[]).map((x,j)=>`<li><span>${esc(x.name)}</span><span class="n">${r0(x.kcal)} kcal <button class="lnk" data-x="${j}">Remove</button></span></li>`).join("") || '<li class="mu">Nothing extra logged.</li>'}</ul>
+         <form id="xf"><label>What<input id="xn" type="text" placeholder="e.g. latte" required></label><label>kcal<input id="xk" type="number" inputmode="numeric" min="0" max="5000" required></label><button type="submit">Add</button></form>
+       </section>
+     </div>
+     <div class="col">
+       <h3>Training</h3>
+       ${sessHTML("Morning", day.am, "am", day)}${sessHTML("Evening", day.pm, "pm", day)}
+       <p class="steps">Daily steps, workouts included: at least ${day.steps}.</p>
+       <section class="wlog"><h4>Notes</h4><textarea id="note" rows="3" placeholder="Sleep, energy, aches, anything worth remembering">${esc(DB.notes[day.k]||"")}</textarea></section>
+     </div>
+   </div>`;
+  const $ = id => document.getElementById(id);
+  $("prev").onclick = ()=>{ sel--; renderAll(); };
+  $("next").onclick = ()=>{ sel++; renderAll(); };
+  $("wf").onsubmit = ev => { ev.preventDefault(); const v = parseFloat($("wi").value);
+    if (isNaN(v)) delete DB.weights[day.k]; else DB.weights[day.k] = v;
+    const ok = save(); $("saved").textContent = !ok ? "Couldn't save: this browser is blocking storage." : isNaN(v) ? "Weight cleared." : "Weight saved.";
+    renderGrid(); renderProgress(); };
+  document.querySelectorAll(".meal[data-idx]").forEach(sec => {
+    const idx = sec.dataset.idx, fd = () => foodDay(day.k);
+    sec.querySelectorAll("input[type=radio]").forEach(r => r.onchange = () => {
+      const cur = fd().meals[idx] || {}; fd().meals[idx] = {...cur, st: r.value};
+      sec.className = "meal st-" + r.value; sec.querySelector(".swap").hidden = r.value !== "swap";
+      save(); refreshEaten();
+    });
+    const upd = () => { const cur = fd().meals[idx] || {st:"swap"}; cur.note = sec.querySelector(".sw-note").value; cur.kcal = parseFloat(sec.querySelector(".sw-kcal").value) || 0; fd().meals[idx] = cur; save(); refreshEaten(); };
+    sec.querySelector(".sw-note").oninput = upd; sec.querySelector(".sw-kcal").oninput = upd;
+  });
+  $("xf").onsubmit = ev => { ev.preventDefault(); const n = $("xn").value.trim(), k = parseFloat($("xk").value);
+    if (!n || isNaN(k)) return; foodDay(day.k).extras.push({name:n, kcal:k}); save(); renderAll(); };
+  document.querySelectorAll("[data-x]").forEach(b => b.onclick = () => { foodDay(day.k).extras.splice(+b.dataset.x,1); save(); renderAll(); });
+  document.querySelectorAll("[data-slot]").forEach(c => c.onchange = () => {
+    const tr = DB.training[day.k] || (DB.training[day.k] = {}); tr[c.dataset.slot] = c.checked;
+    c.closest(".sess").classList.toggle("done", c.checked); save(); renderGrid(); renderProgress(); });
+  $("note").oninput = () => { const v = $("note").value; if (v) DB.notes[day.k] = v; else delete DB.notes[day.k]; save(); };
+  renderShop();
+}
+function refreshEaten(){
+  const day = DAYS[sel], e = eaten(day), t = planTotals(day);
+  document.getElementById("eatenline").innerHTML = e ? `Logged so far: <strong>${r0(e.kcal).toLocaleString()} kcal</strong> (${e.marked} of ${e.total} meals marked${e.extra?`, ${r0(e.extra)} kcal extras`:""}). Plan: ${r0(t[0]).toLocaleString()}.` : `Nothing logged yet. Plan: ${r0(t[0]).toLocaleString()} kcal.`;
+  renderGrid(); renderProgress();
+}
+
+/* ---------- progress ---------- */
+function weighIns(){ return Object.entries(DB.weights).map(([k,v])=>({k, t: new Date(k+"T12:00:00").getTime(), v:+v})).sort((a,b)=>a.t-b.t); }
+function avgAround(list, t){ const win = list.filter(p => p.t <= t && p.t > t - 7*DAYMS); return win.length ? win.reduce((a,p)=>a+p.v,0)/win.length : null; }
+function slope(pts){ // lb per day, least squares
+  const n = pts.length; if (n < 4) return null;
+  const mx = pts.reduce((a,p)=>a+p.t,0)/n, my = pts.reduce((a,p)=>a+p.v,0)/n;
+  let num=0, den=0; pts.forEach(p=>{num+=(p.t-mx)*(p.v-my);den+=(p.t-mx)**2;});
+  return den ? num/den*DAYMS : null;
+}
+function renderProgress(){
+  const W = weighIns(), el = document.getElementById("stats");
+  const xmasT = new Date(XMAS+"T12:00:00").getTime();
+  let html = "";
+  if (!W.length){
+    html = `<p class="empty">Log a morning weight on any day to start tracking. The first entry becomes your starting point.</p>`;
+  } else {
+    const first = W[0], last = W[W.length-1];
+    const avg = avgAround(W, last.t);
+    const recent = W.filter(p => p.t > last.t - 14*DAYMS);
+    const s = slope(recent);
+    const idx = Math.round((last.t - (START.getTime()+12*3600e3)) / DAYMS);
+    const lineNow = 260 - 40 * Math.max(0, Math.min(idx, NDAYS-1)) / (NDAYS-1);
+    const diff = avg - lineNow;
+    const proj = s != null ? avg + s * Math.max(0,(xmasT - last.t)/DAYMS) : null;
+    const earlyNote = (last.t - first.t) < 14*DAYMS ? " Early weeks include water loss, so this rate will likely slow." : "";
+    const last7 = DAYS.filter(d => d.i <= idx && d.i > idx-7).map(eaten).filter(e => e && e.complete);
+    const avgK = last7.length ? last7.reduce((a,e)=>a+e.kcal,0)/last7.length : null;
+    html = `<dl class="big">
+      <div><dt>7-day average</dt><dd>${avg.toFixed(1)}<small> lb</small></dd></div>
+      <div><dt>Lost so far</dt><dd>${(first.v-avg).toFixed(1)}<small> lb</small></dd><p>from ${first.v.toFixed(1)} on ${short(new Date(first.t))}</p></div>
+      <div><dt>Current rate</dt><dd>${s!=null?(-s*7).toFixed(1):"–"}<small> lb/wk</small></dd><p>${s!=null?"over the last 14 days":"needs 4+ weigh-ins"}</p></div>
+      <div><dt>Christmas projection</dt><dd>${proj!=null?proj.toFixed(0):"–"}<small> lb</small></dd><p>${proj!=null?"if this rate holds":"needs 4+ weigh-ins"}</p></div>
+      <div><dt>Vs. the 220 line</dt><dd>${Math.abs(diff).toFixed(1)}<small> lb ${diff<=0?"ahead":"behind"}</small></dd></div>
+      <div><dt>Avg eaten, last 7 days</dt><dd>${avgK!=null?r0(avgK).toLocaleString():"–"}<small> kcal</small></dd><p>${last7.length} fully logged day${last7.length===1?"":"s"}</p></div>
+    </dl><p class="mu">${s!=null && -s*7 < 1.5 && (last.t-first.t) >= 14*DAYMS ? "Rate is under 1.5 lb/week. If that holds for two weeks, drop the afternoon snack (see When to adjust)." : ""}${earlyNote}</p>`;
+  }
+  el.innerHTML = html;
+  renderChart(W); renderWeeks(W);
+}
+function renderWeeks(W){
+  let rows = "", prev = null;
+  for (let w = 0; w < 13; w++){
+    const ds = DAYS.filter(d => d.w === w || (w===12 && d.w===13));
+    const t0 = ds[0].d.getTime(), t1 = ds[ds.length-1].d.getTime() + DAYMS;
+    const ws = W.filter(p => p.t >= t0 && p.t < t1);
+    const avg = ws.length ? ws.reduce((a,p)=>a+p.v,0)/ws.length : null;
+    const es = ds.map(eaten).filter(e => e && e.complete);
+    const ak = es.length ? es.reduce((a,e)=>a+e.kcal,0)/es.length : null;
+    let need = 0, done = 0; ds.forEach(d => { need += d.pm ? 2 : 1; const tr = DB.training[d.k]||{}; done += (tr.am?1:0)+(tr.pm?1:0); });
+    const any = ws.length || es.length || done;
+    rows += `<tr class="${ds.some(d=>d.i===sel)?"cur":""}"><td>${w+1}</td><td>${short(ds[0].d)}–${short(ds[ds.length-1].d)}</td><td class="n">${avg!=null?avg.toFixed(1):"–"}</td><td class="n">${avg!=null&&prev!=null?((avg-prev)>0?"+":"")+(avg-prev).toFixed(1):"–"}</td><td class="n">${ak!=null?r0(ak).toLocaleString():"–"}</td><td class="n">${any?done+" / "+need:"–"}</td></tr>`;
+    if (avg != null) prev = avg;
+  }
+  document.getElementById("weeks").innerHTML = rows;
+}
+function renderChart(W){
+  const Wd = 920, H = 260, p = {l:44,r:12,t:14,b:28};
+  const vals = W.map(x=>x.v);
+  const ymin = Math.min(212, ...vals.map(v=>Math.floor(v-3))), ymax = Math.max(266, ...vals.map(v=>Math.ceil(v+3)));
+  const t0 = START.getTime()+12*3600e3;
+  const xi = i => p.l + (Wd-p.l-p.r) * i/(NDAYS-1), xt = t => xi((t - t0)/DAYMS), y = v => p.t + (H-p.t-p.b) * (ymax - v)/(ymax - ymin);
+  let s = `<svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="Weight log against the 220 lb goal">`;
+  for (let v=Math.ceil(ymin/10)*10; v<=ymax; v+=10) s += `<line x1="${p.l}" x2="${Wd-p.r}" y1="${y(v)}" y2="${y(v)}" class="gl"/><text x="${p.l-8}" y="${y(v)+4}" text-anchor="end" class="ax">${v}</text>`;
+  [0,6,37,67,91].forEach(i=>{ const d=DAYS[i].d; s += `<text x="${xi(i)}" y="${H-8}" text-anchor="middle" class="ax">${short(d)}</text>`; });
+  s += `<line x1="${xi(0)}" y1="${y(260)}" x2="${xi(NDAYS-1)}" y2="${y(220)}" class="tl"/>`;
+  const inR = W.filter(q => q.t >= t0 - 12*3600e3 && q.t <= t0 + (NDAYS-1)*DAYMS + 12*3600e3);
+  inR.forEach(q => s += `<circle cx="${xt(q.t)}" cy="${y(q.v)}" r="3" class="pt"><title>${short(new Date(q.t))}: ${q.v} lb</title></circle>`);
+  const avg = inR.map(q => [q.t, W.filter(z => z.t <= q.t && z.t > q.t-7*DAYMS)]).filter(([,win]) => win.length >= 3).map(([t,win]) => [t, win.reduce((a,z)=>a+z.v,0)/win.length]);
+  if (avg.length > 1) s += `<polyline points="${avg.map(([t,v])=>xt(t)+","+y(v)).join(" ")}" class="av"/>`;
+  s += `</svg>`;
+  document.getElementById("chart").innerHTML = s;
+}
+function renderShop(){
+  const w = Math.min(DAYS[sel].w, 13), agg = {};
+  DAYS.filter(d=>d.w===w && !d.thanks).forEach(d=>d.menu.forEach(([,m])=>(m.items||[]).forEach(([k,g])=>agg[k]=(agg[k]||0)+g)));
+  const rows = Object.entries(agg).sort((a,b)=>FOODS[a[0]][0].localeCompare(FOODS[b[0]][0])).map(([k,g])=>`<li><span>${FOODS[k][0]}</span><span class="n">${g>=1000?(g/1000).toFixed(2)+" kg":g+" g"} <span class="mu">(${(g/453.6).toFixed(1)} lb)</span></span></li>`).join("");
+  const first = DAYS.find(d=>d.w===w), last = [...DAYS].reverse().find(d=>d.w===w);
+  document.getElementById("shopt").textContent = `Shopping for week ${Math.min(w+1,13)}: ${short(first.d)} to ${short(last.d)}`;
+  document.getElementById("shop").innerHTML = rows;
+}
+
+/* ---------- backup ---------- */
+document.getElementById("exp").onclick = () => {
+  const blob = new Blob([JSON.stringify(DB, null, 1)], {type:"application/json"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "plan260-backup-" + TODAYK + ".json";
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();}, 500);
+  document.getElementById("bmsg").textContent = "Backup downloaded.";
+};
+document.getElementById("imp").onchange = ev => {
+  const file = ev.target.files[0]; if (!file) return;
+  file.text().then(txt => {
+    const o = JSON.parse(txt);
+    if (!o || typeof o.weights !== "object") throw new Error("bad");
+    DB = {weights:o.weights||{}, food:o.food||{}, training:o.training||{}, notes:o.notes||{}};
+    save(); renderAll(); document.getElementById("bmsg").textContent = "Backup restored.";
+  }).catch(() => { document.getElementById("bmsg").textContent = "That file isn't a backup from this page. Nothing was changed."; });
+  ev.target.value = "";
+};
+
+function renderAll(){ renderGrid(); renderDay(); renderProgress(); }
+renderAll();
+</script>
+</body>
+</html>
